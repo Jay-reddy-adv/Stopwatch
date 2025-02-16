@@ -12,14 +12,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class MainActivity extends AppCompatActivity {
 
-    private TextView timerText;
+    private TextView timerText,continuetxt,pausetxt,resettxt;
     private Button startButton, pauseButton, resetButton;
 
     private long startTime = 0L, timeInMilliseconds = 0L, timeSwapBuff = 0L, updateTime = 0L;
     private Handler handler = new Handler();
     private boolean isRunning = false;
+    GifImageView clockgif;
 
     private Runnable updateTimerThread = new Runnable() {
         @Override
@@ -46,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
         startButton = findViewById(R.id.startButton);
         pauseButton = findViewById(R.id.pauseButton);
         resetButton = findViewById(R.id.resetButton);
+        clockgif = findViewById(R.id.cloclgif_id);
+        continuetxt = findViewById(R.id.continuetxt_id);
+        pausetxt = findViewById(R.id.pausetxt_id);
+        resettxt = findViewById(R.id.resettxt_id);
+
+
+//        pauseButton.setVisibility(View.INVISIBLE);
+//        resetButton.setVisibility(View.INVISIBLE);
+        clockgif.setVisibility(View.INVISIBLE);
+        pausetxt.setVisibility(View.INVISIBLE);
+        resettxt.setVisibility(View.INVISIBLE);
+        continuetxt.setVisibility(View.INVISIBLE);
 
         startButton.setOnClickListener(view -> {
             if (!isRunning) {
@@ -53,9 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(updateTimerThread);
                 isRunning = true;
 
-                startButton.setVisibility(View.GONE);
+//                startButton.setVisibility(View.GONE);
                 pauseButton.setVisibility(View.VISIBLE);
                 resetButton.setVisibility(View.VISIBLE);
+                clockgif.setVisibility(View.VISIBLE);
+
+                pausetxt.setVisibility(View.VISIBLE);
+                resettxt.setVisibility(View.VISIBLE);
+
+
+                startButton.setActivated(false);
+                pauseButton.setActivated(true);
+                resetButton.setActivated(true);
+
+
             }
         });
 
@@ -66,7 +92,14 @@ public class MainActivity extends AppCompatActivity {
                 isRunning = false;
 
                 startButton.setVisibility(View.VISIBLE);
-                pauseButton.setVisibility(View.GONE);
+                resetButton.setVisibility(View.VISIBLE);
+                continuetxt.setVisibility(View.VISIBLE);
+                pausetxt.setVisibility(View.INVISIBLE);
+                resettxt.setVisibility(View.VISIBLE);
+                startButton.setActivated(true);
+                pauseButton.setActivated(false);
+                resetButton.setActivated(true);
+                clockgif.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -78,9 +111,16 @@ public class MainActivity extends AppCompatActivity {
             timerText.setText("00:00:00");
             handler.removeCallbacks(updateTimerThread);
 
-            startButton.setVisibility(View.VISIBLE);
-            pauseButton.setVisibility(View.GONE);
-            resetButton.setVisibility(View.GONE);
+//            startButton.setVisibility(View.VISIBLE);
+//            pauseButton.setVisibility(View.GONE);
+//            resetButton.setVisibility(View.GONE);
+            clockgif.setVisibility(View.INVISIBLE);
+            startButton.setActivated(true);
+            pauseButton.setActivated(true);
+            resetButton.setActivated(false);
+            pausetxt.setVisibility(View.INVISIBLE);
+            continuetxt.setVisibility(View.VISIBLE);
+            resettxt.setVisibility(View.INVISIBLE);
         });
 
 
