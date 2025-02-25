@@ -4,7 +4,12 @@ A simple Android application that functions as a stopwatch. Users can start, sto
 
 **🚀 Features**
 
-Start, Stop, and Reset functionality
-Display time in HH:MM:SS format
-Minimal and user-friendly UI
-Uses Handler for time updates
+✅ Start, Stop functionality 
+
+✅ Reset functionality
+
+✅ Display time in HH:MM:SS format
+
+✅ Minimal and user-friendly UI
+
+✅ Uses Handler for time updates
