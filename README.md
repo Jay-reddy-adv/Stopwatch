@@ -2,7 +2,7 @@
 
 A simple Android application that functions as a stopwatch. Users can start, stop, and reset the timer with a user-friendly interface. This app is built using Java in Android Studio.
 
-**🚀 Features**
+**🚀 Features** :
 
 ✅ Start, Stop functionality 
 
